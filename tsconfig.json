@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "rootDirs": ["src"],
+    "outDir": "dist",
+    "lib": ["es2020"],
+    "target": "es2020",
+    "module": "NodeNext",
+    "moduleResolution": "Node16",
+    "esModuleInterop": true,
+    "types": ["node", "mocha"],
+    "skipLibCheck": true
+  }
+}

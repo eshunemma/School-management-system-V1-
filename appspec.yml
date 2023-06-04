@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/projects/arms-invoice-management-service
+hooks:
+  BeforeInstall:
+    - location: code-deploy-scripts/before-install.sh
+      timeout: 500
+  AfterInstall:
+    - location: code-deploy-scripts/after-install.sh
+      timeout: 500
+  ApplicationStart:
+    - location: code-deploy-scripts/boot.sh
+      timeout: 500
