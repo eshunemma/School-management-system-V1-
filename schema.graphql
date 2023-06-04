@@ -4,9 +4,9 @@ extend schema
     import: ["@key", "@shareable"]
   )
 
-# type Query {
-
-# }
+type Query {
+  listAllUsers: [User]
+}
 
 type Mutation {
   signUp(data: UserInput): AuthPayload

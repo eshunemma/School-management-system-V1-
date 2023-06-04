@@ -23,9 +23,15 @@ interface UserArgs {
   }
 
 export const user_resolvers = {
+    Query:{
+        listAllUsers: (_: any, __: any, { prisma }: Context) => {
+            return prisma.user.findMany();
+        }
+    },
+
     Mutation: {
         // Sign Up Resolver
-        signUp: async (_: any, { data }: UserArgs, { prisma }: Context) => {
+        signUp: async (_: any, { data }: UserArgs, { prisma, userInfo }: Context) => {
             const { name, email, userName, password, CreatedBy, role } = data;
             const convertName = toCapitalizeEachWord(name);
             try {

@@ -13,6 +13,7 @@ import { buildSubgraphSchema } from "@apollo/subgraph";
 import { applyMiddleware } from "graphql-middleware";
 const typeDefs = gql(readFileSync("./schema.graphql", { encoding: "utf-8" }));
 import dotenv from "dotenv";
+import { getUserFromToken } from "./src/helpers/getUserInfo.js";
 dotenv.config();
 
 const schema = applyMiddleware(
@@ -36,10 +37,11 @@ app.use(
     cors(),
     bodyParser.json(),
     expressMiddleware(server, {
-        context: async ({ req }) => {
+        context: async ({ req }: any): Promise<Context> => {
+            const userInfo = getUserFromToken(req.headers.authorization);
             return {
                 prisma,
-                req,
+                userInfo,
             };
         },
     })
