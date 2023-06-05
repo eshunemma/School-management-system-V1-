@@ -11,6 +11,9 @@ type Query {
 type Mutation {
   signUp(data: UserInput): AuthPayload
   signIn(data: UserInput): AuthPayload
+
+  # StudentInfo Resolver
+  addStudent(data: StudentInfo_Input): StudentInfo
 }
 
 type User {
@@ -41,4 +44,100 @@ input UserInput {
   CreatedBy: Int
   updatedAt: String
   updateBy: Int
+}
+
+# STUDENT INFO TYPES AND INPUT
+type StudentInfo {
+  id: ID
+  studentId: String
+  studentName: String
+  dateOfBirth: String
+  nationality: String
+  destination: String
+  digitalAddress: String
+  motherTongue: String
+  secondLanguage: String
+  religion: String
+  admissionDate: String
+  admissionNumber: String
+  classOnAdmission: String
+  previous_school: String
+  previousSchoolLocation: String
+  classInPreviousSchool: String
+  studentImage: String
+  createdAt: String
+  createdBy: Int
+  updatedAt: String
+  updatedBy: Int
+  FamilyInfo: [FamilyInfo]
+  EmergencyContact: EmergencyContact
+}
+
+type FamilyInfo {
+  id: ID
+  student_id: String
+  parent_name: String
+  occupation: String
+  place_of_work: String
+  parent_destination: String
+  hometown: String
+  telephone_number: String
+  whatsapp_number: String
+  relation: String
+  student: StudentInfo
+}
+
+type EmergencyContact {
+  id: ID
+  studentId: String
+  contactName: String
+  relation: String
+  telephone: String
+  student: StudentInfo
+}
+
+input StudentInfo_Input {
+  studentId: String
+  studentName: String
+  dateOfBirth: String
+  nationality: String
+  destination: String
+  digitalAddress: String
+  motherTongue: String
+  secondLanguage: String
+  religion: String
+  admissionDate: String
+  admissionNumber: String
+  classOnAdmission: String
+  previous_school: String
+  previousSchoolLocation: String
+  classInPreviousSchool: String
+  studentImage: String
+  createdAt: String
+  createdBy: Int
+  updatedAt: String
+  updatedBy: Int
+  contactName: String
+  relation: String
+  telephone: String
+  Family_info: [FamilyInfoInput]
+}
+
+input FamilyInfoInput {
+  student_id: String
+  parent_name: String
+  occupation: String
+  place_of_work: String
+  parent_destination: String
+  hometown: String
+  telephone_number: String
+  whatsapp_number: String
+  relation: String
+}
+
+input EmergencyContactInput {
+  studentId: String
+  contactName: String
+  relation: String
+  telephone: String
 }

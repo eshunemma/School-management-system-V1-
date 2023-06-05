@@ -19,3 +19,52 @@ model User {
   updated_at DateTime?
   update_by  Int?
 }
+
+model student_info {
+  id                       Int                @id @default(autoincrement())
+  student_id               String             @unique
+  student_name             String
+  date_of_birth            DateTime
+  nationality              String
+  destination              String
+  digital_Address          String?
+  mother_tongue            String
+  second_language          String?
+  religion                 String
+  admission_date           DateTime
+  admission_number         String?
+  class_on_admission       String?
+  previous_school          String?
+  previous_school_location String?
+  class_in_previous_school String?
+  student_image            String?
+  created_at               DateTime?          @default(now())
+  created_by               Int
+  updated_at               DateTime?
+  updated_by               Int?
+  Family_info              family_info[]
+  Emergency_contact        emergency_contact?
+}
+
+model family_info {
+  id                 Int          @id @default(autoincrement())
+  student_id         String
+  parent_name        String
+  occupation         String
+  place_of_work      String?
+  parent_destination String
+  hometown           String
+  telephone_number   String
+  whatsapp_number    String?
+  relation           String
+  student            student_info @relation(fields: [student_id], references: [student_id])
+}
+
+model emergency_contact {
+  id           Int          @id @default(autoincrement())
+  student_id   String       @unique
+  contact_name String
+  relation     String
+  telephone    String
+  student      student_info @relation(fields: [student_id], references: [student_id])
+}
