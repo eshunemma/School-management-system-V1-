@@ -6,6 +6,7 @@ extend schema
 
 type Query {
   listAllUsers: [User]
+  listAllStaffs: [Staff]
 }
 
 type Mutation {
@@ -14,6 +15,9 @@ type Mutation {
 
   # StudentInfo Resolver
   addStudent(data: StudentInfo_Input): StudentInfo
+
+  # Staff Resolver
+  addStaff(data: staffInput): Staff
 }
 
 type User {
@@ -53,6 +57,8 @@ type StudentInfo {
   studentName: String
   dateOfBirth: String
   nationality: String
+  gender: String
+  hometown: String
   destination: String
   digitalAddress: String
   motherTongue: String
@@ -83,6 +89,7 @@ type FamilyInfo {
   hometown: String
   telephone_number: String
   whatsapp_number: String
+  email: String
   relation: String
   student: StudentInfo
 }
@@ -96,11 +103,29 @@ type EmergencyContact {
   student: StudentInfo
 }
 
+type Staff {
+  id: ID
+  staffId: String
+  staffName: String
+  DOB: String
+  destination: String
+  phoneNumber: String
+  email: String
+  nationalId: String
+  snnitId: String
+  dateJoined: String
+  active: Boolean
+  createdAt: String
+  updatedAt: String
+}
+
 input StudentInfo_Input {
   studentId: String
   studentName: String
   dateOfBirth: String
   nationality: String
+  gender: String
+  hometown: String
   destination: String
   digitalAddress: String
   motherTongue: String
@@ -132,6 +157,7 @@ input FamilyInfoInput {
   hometown: String
   telephone_number: String
   whatsapp_number: String
+  email: String
   relation: String
 }
 
@@ -140,4 +166,19 @@ input EmergencyContactInput {
   contactName: String
   relation: String
   telephone: String
+}
+
+input staffInput {
+  staffId: String
+  staffName: String
+  DOB: String
+  destination: String
+  phoneNumber: String
+  email: String
+  nationalId: String
+  snnitId: String
+  dateJoined: String
+  active: Boolean
+  createdAt: String
+  updatedAt: String
 }

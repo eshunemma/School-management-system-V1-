@@ -26,6 +26,8 @@ model student_info {
   student_name             String
   date_of_birth            DateTime
   nationality              String
+  gender                   String
+  hometown                 String
   destination              String
   digital_Address          String?
   mother_tongue            String
@@ -56,6 +58,7 @@ model family_info {
   hometown           String
   telephone_number   String
   whatsapp_number    String?
+  email              String?
   relation           String
   student            student_info @relation(fields: [student_id], references: [student_id])
 }
@@ -67,4 +70,20 @@ model emergency_contact {
   relation     String
   telephone    String
   student      student_info @relation(fields: [student_id], references: [student_id])
+}
+
+model staff {
+  id          Int       @id @default(autoincrement())
+  staffId     String    @unique
+  staffName   String
+  DOB         String
+  destination String
+  phoneNumber String
+  email       String    @unique
+  nationalId  String    @unique
+  snnitId     String    @unique
+  dateJoined  DateTime
+  active      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
 }

@@ -16,6 +16,8 @@ interface studentArgs {
     studentName: string;
     dateOfBirth: string;
     nationality: string;
+    gender: string;
+    hometown: string;
     destination: string;
     digitalAddress: string;
     motherTongue: string;
@@ -60,6 +62,8 @@ export const student_resolvers = {
                 studentName,
                 dateOfBirth,
                 nationality,
+                gender,
+                hometown,
                 destination,
                 digitalAddress,
                 motherTongue,
@@ -96,6 +100,8 @@ export const student_resolvers = {
                         student_name: toCapitalizeEachWord(studentName),
                         date_of_birth: new Date(dateOfBirth),
                         nationality,
+                        gender,
+                        hometown,
                         destination,
                         digital_Address: digitalAddress,
                         mother_tongue: motherTongue,
@@ -120,8 +126,13 @@ export const student_resolvers = {
                             }
                         }
 
+                    },
+                    include: {
+                        Emergency_contact: true,
+                        Family_info: true
                     }
                 });
+                
                 return response;
             } catch (error) {
                 return error;
