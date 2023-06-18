@@ -46,6 +46,7 @@ model student_info {
   updated_by               Int?
   Family_info              family_info[]
   Emergency_contact        emergency_contact?
+  class                    student_class?
 }
 
 model family_info {
@@ -73,17 +74,77 @@ model emergency_contact {
 }
 
 model staff {
-  id          Int       @id @default(autoincrement())
-  staffId     String    @unique
+  id          Int          @id @default(autoincrement())
+  staffId     String       @unique
   staffName   String
   DOB         String
   destination String
   phoneNumber String
-  email       String    @unique
-  nationalId  String    @unique
-  snnitId     String    @unique
+  email       String       @unique
+  nationalId  String       @unique
+  snnitId     String       @unique
   dateJoined  DateTime
-  active      Boolean   @default(true)
-  createdAt   DateTime  @default(now())
+  active      Boolean      @default(true)
+  createdAt   DateTime     @default(now())
   updatedAt   DateTime?
+  class       class_table?
+}
+
+model class_table {
+  id            Int             @id @default(autoincrement())
+  class_name    String
+  department_id Int
+  staff_id      String          @unique
+  department    departments     @relation(fields: [department_id], references: [id])
+  staff         staff           @relation(fields: [staff_id], references: [staffId])
+  students      student_class[]
+}
+
+model departments {
+  id      Int           @id @default(autoincrement())
+  name    String
+  class   class_table[]
+  subject subject[]
+}
+
+model student_class {
+  student_id Int          @unique
+  class_id   Int
+  student    student_info @relation(fields: [student_id], references: [id])
+  class      class_table  @relation(fields: [class_id], references: [id])
+}
+
+model subject {
+  id            Int           @id @default(autoincrement())
+  name          String
+  description   String
+  department_id departments[]
+  exam_results  exam_result[]
+}
+
+model exam_type {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  exam        exam[]
+}
+
+model exam {
+  id           Int           @id @default(autoincrement())
+  exam_type_id Int
+  name         String
+  start_date   DateTime
+  end_date     DateTime
+  exam_type    exam_type     @relation(fields: [exam_type_id], references: [id])
+  exam_result  exam_result[]
+}
+
+model exam_result {
+  id         Int     @id @default(autoincrement())
+  exam_id    Int
+  student_id Int
+  subject_id Int
+  marks      Int
+  exam       exam    @relation(fields: [exam_id], references: [id])
+  subject    subject @relation(fields: [subject_id], references: [id])
 }
