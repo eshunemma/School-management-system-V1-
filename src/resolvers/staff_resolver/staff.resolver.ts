@@ -5,8 +5,6 @@ import { GraphQLError } from "graphql";
 import dotenv from "dotenv";
 import { toCapitalizeEachWord } from "../../helpers/text-formatter.js";
 import { Context } from "../../contexts.js";
-import { comparePassword, hashPassword } from "../../helpers/hashPassword.js";
-import JWT from "jsonwebtoken";
 dotenv.config();
 
 interface StaffArgs {
@@ -67,7 +65,7 @@ export const staff_resolvers = {
                 const response = await prisma.staff.create({
                     data: {
                         staffId,
-                        staffName,
+                        staffName: toCapitalizeEachWord(staffName),
                         DOB,
                         active,
                         dateJoined: new Date(dateJoined),

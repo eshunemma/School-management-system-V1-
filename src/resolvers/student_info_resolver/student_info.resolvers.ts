@@ -10,7 +10,7 @@ import JWT from "jsonwebtoken";
 dotenv.config();
 const JWT_signature = process.env.JWT_SIGNATURE;
 
-interface studentArgs {
+interface StudentArgs {
   data: {
     studentId: string;
     studentName: string;

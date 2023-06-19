@@ -7,6 +7,8 @@ extend schema
 type Query {
   listAllUsers: [User]
   listAllStaffs: [Staff]
+  listAllClasses: [Class_table]
+  listAllDepartment: [Departments]
 }
 
 type Mutation {
@@ -18,6 +20,12 @@ type Mutation {
 
   # Staff Resolver
   addStaff(data: staffInput): Staff
+
+  # Class
+  addClass(data: classInput): Class_table
+
+  # departments
+  addDepartment(data: departmentInput): Departments
 }
 
 type User {
@@ -119,6 +127,35 @@ type Staff {
   updatedAt: String
 }
 
+type Class_table {
+  id: ID
+  class_name: String
+  department_id: Int
+  staff_id: String
+  departments: [Departments]
+  staff: [Staff]
+  students: [Student_class]
+}
+
+type Departments {
+  id: ID
+  name: String
+  class: [Class_table]
+  Subject: [Subject]
+}
+
+type Student_class {
+  student_id: Int
+  class_id: Int
+}
+
+type Subject {
+  id: ID
+  name: String
+  description: String
+  department_id: [Departments]
+}
+
 input StudentInfo_Input {
   studentId: String
   studentName: String
@@ -181,4 +218,15 @@ input staffInput {
   active: Boolean
   createdAt: String
   updatedAt: String
+}
+
+input classInput {
+  class_name: String
+  department_id: Int
+  staff_id: String
+}
+
+input departmentInput {
+  id: ID
+  name: String
 }
