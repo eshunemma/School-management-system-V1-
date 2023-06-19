@@ -21,10 +21,10 @@ git https://github.com/eshunemma/school-management-system.git
 
 > Open the project in your IDE. Visual Studio Code is recommended
 
-**2. Navigate to the development branch.**
+**2. Navigate to the master branch.**
 
 ```sh
-git checkout develop
+git checkout master
 ```
 
 **3. Install packages.**
@@ -39,20 +39,11 @@ yarn install
 yarn start
 ```
 
-**5. Create a new branch from 'development' branch and start contributing.**
+**5. Create a new branch from 'master' branch and start contributing.**
 
 ```sh
 git checkout -b <branch-name>
 ```
 
-## Running Checks
-
-```sh
-yarn lint
-```
-
-```sh
-yarn format
-```
 
 **Happy Coding!**
