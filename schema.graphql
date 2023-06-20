@@ -26,6 +26,11 @@ type Mutation {
 
   # departments
   addDepartment(data: departmentInput): Departments
+
+  # Exam
+  addExamType(data: ExamTypeInput): ExamType
+  addExam(data: ExamInput): Exam
+  addExamResult(data: ExamResultInput): ExamResult
 }
 
 type User {
@@ -156,6 +161,30 @@ type Subject {
   department_id: [Departments]
 }
 
+type ExamType {
+  id: ID
+  name: String
+  description: String
+  exam: [Exam]
+}
+
+type Exam {
+  id: ID
+  exam_type_id: String
+  name: String
+  start_date: String
+  end_date: String
+  exam_result: [ExamResult]
+}
+
+type ExamResult {
+  id: ID
+  exam_id: Int
+  student_id: Int
+  subject_id: Int
+  marks: Int
+}
+
 input StudentInfo_Input {
   studentId: String
   studentName: String
@@ -229,4 +258,23 @@ input classInput {
 input departmentInput {
   id: ID
   name: String
+}
+
+input ExamTypeInput {
+  name: String
+  description: String
+}
+
+input ExamInput {
+  exam_type_id: String
+  name: String
+  start_date: String
+  end_date: String
+}
+
+input ExamResultInput {
+  exam_id: Int
+  student_id: Int
+  subject_id: Int
+  marks: Int
 }
