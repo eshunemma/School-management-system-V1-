@@ -30,7 +30,11 @@ export const staff_resolvers = {
 
     Query: {
         listAllStaffs: async(_:any, __:any, {prisma}: Context) => {
-            const response = await prisma.staff.findMany();
+            const response = await prisma.staff.findMany({
+                orderBy: {
+                    id: "desc"
+                }
+            });
             return response;
         }
     },

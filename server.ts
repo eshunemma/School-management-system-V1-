@@ -49,6 +49,6 @@ app.use(
 
 const port = process.env.PORT;
 
-await new Promise((resolve: any) => httpServer.listen({ port }, resolve));
+await new Promise((resolve: any) => httpServer.listen(8888, resolve));
 // eslint-disable-next-line no-console
-console.log(`🚀 Server ready at http://localhost:${port}`);
+console.log(`🚀 Server ready at http://localhost:${8888}`);

@@ -8,6 +8,8 @@ RUN yarn install
 
 COPY . .
 
+# RUN npx prisma migrate dev
+
 EXPOSE 9999
 
 CMD [ "yarn", "start" ]

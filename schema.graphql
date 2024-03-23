@@ -9,6 +9,7 @@ type Query {
   listAllStaffs: [Staff]
   listAllClasses: [Class_table]
   listAllDepartment: [Departments]
+  listAllStudents: [StudentInfo]
 }
 
 type Mutation {
@@ -40,6 +41,7 @@ type User {
   password: String
   userName: String
   role: String
+  active: Boolean
   createdAt: String
   createdBy: Int
   updatedAt: String
@@ -137,7 +139,7 @@ type Class_table {
   class_name: String
   department_id: Int
   staff_id: String
-  departments: [Departments]
+  department: Departments
   staff: [Staff]
   students: [Student_class]
 }
@@ -277,4 +279,10 @@ input ExamResultInput {
   student_id: Int
   subject_id: Int
   marks: Int
+}
+
+enum Role {
+  Admin
+  Teacher
+  student
 }

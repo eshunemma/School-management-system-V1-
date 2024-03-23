@@ -23,6 +23,9 @@ export const department_resolvers = {
                 include:{
                     class: true,
                     subject:true,
+                },
+                orderBy: {
+                    id: "desc"
                 }
             });
         },

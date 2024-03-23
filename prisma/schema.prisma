@@ -13,9 +13,11 @@ model User {
   email      String    @unique
   password   String
   userName   String    @unique
-  role       String
+  role       Role?
+  picture    String?
+  active     Boolean   @default(false)
   created_at DateTime? @default(now())
-  created_by Int
+  created_by Int?
   updated_at DateTime?
   update_by  Int?
 }
@@ -94,9 +96,9 @@ model class_table {
   id            Int             @id @default(autoincrement())
   class_name    String
   department_id Int
-  staff_id      String          @unique
+  staff_id      String?         @unique
   department    departments     @relation(fields: [department_id], references: [id])
-  staff         staff           @relation(fields: [staff_id], references: [staffId])
+  staff         staff?          @relation(fields: [staff_id], references: [staffId])
   students      student_class[]
 }
 
@@ -147,4 +149,10 @@ model exam_result {
   marks      Int
   exam       exam    @relation(fields: [exam_id], references: [id])
   subject    subject @relation(fields: [subject_id], references: [id])
+}
+
+enum Role {
+  Admin
+  Teacher
+  student
 }

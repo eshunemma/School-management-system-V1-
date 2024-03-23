@@ -18,9 +18,10 @@ export const class_resolvers = {
         listAllClasses: (_: any, __: any, { prisma }: Context) => {
             return prisma.class_table.findMany({
                 include: {
-                    department: true,
-                    staff: true,
-                    students: true
+                    department: true
+                },
+                orderBy: {
+                    id: "desc"
                 }
             });
         },
@@ -41,7 +42,7 @@ export const class_resolvers = {
                 const response = await prisma.class_table.create({
                     data:{
                         class_name: toCapitalizeEachWord(class_name),
-                        department_id,
+                        department_id: Number(department_id),
                         staff_id,
                     },
                     include:{

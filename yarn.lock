@@ -1541,10 +1541,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/engines@npm:4.14.1":
-  version: 4.14.1
-  resolution: "@prisma/engines@npm:4.14.1"
-  checksum: 9c6af9b98303b408b667b69653fd7b2eaa2c28775cf4c2559c51e3dfa161b4104deb41222d3b2fc33fd28ab255a633a9a9c0234d2d5b2b031f9fc1e715befc83
+"@prisma/engines@npm:4.16.1":
+  version: 4.16.1
+  resolution: "@prisma/engines@npm:4.16.1"
+  checksum: 7b8c1a9e20434edaa919fb24585ebff573c4ace787ea5a135dfefde3571ae31d3f0b0347397774c38be6d2e3fc0087d4e21a2720fe9f7a66ffd870e34377040f
   languageName: node
   linkType: hard
 
@@ -2384,7 +2384,7 @@ __metadata:
     nodemailer: ^6.9.1
     nodemon: ^2.0.22
     prettier: ^2.8.8
-    prisma: ^4.9.0
+    prisma: ^4.16.1
     typescript: ^5.0.4
     yup: ^0.32.11
   languageName: unknown
@@ -6272,15 +6272,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:^4.9.0":
-  version: 4.14.1
-  resolution: "prisma@npm:4.14.1"
+"prisma@npm:^4.16.1":
+  version: 4.16.1
+  resolution: "prisma@npm:4.16.1"
   dependencies:
-    "@prisma/engines": 4.14.1
+    "@prisma/engines": 4.16.1
   bin:
     prisma: build/index.js
     prisma2: build/index.js
-  checksum: 2cb0085652b541aa4c855f1434083b6fc0f3df5be28a0558fe2e1b120546b95d114177f86641fa9e21e13fb3a27a48e8cfd240d683a9e8e872b72e2c8c61a7e2
+  checksum: eb0f43970464fbaa6ba190a714f23d00acd39dcc14fd8a7183dffc51a548cc32040cc5360415787578749862af7501a7bedcf9f2a0e64a3f82e3af402e9439d7
   languageName: node
   linkType: hard
 
