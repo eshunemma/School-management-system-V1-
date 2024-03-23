@@ -16,16 +16,27 @@ interface UserArgs {
         name: string;
         email: string;
         password: string;
-        role: string;
+        role: Role;
         userName: string;
         CreatedBy: number;
     }
   }
 
+  interface Role {
+    Admin: "Admin",
+    Teacher: "Teacher",
+    Student: "Student"
+  }
+
 export const user_resolvers = {
     Query:{
-        listAllUsers: (_: any, __: any, { prisma }: Context) => {
-            return prisma.user.findMany();
+        listAllUsers:async  (_: any, __: any, { prisma }: Context) => {
+            const result = await prisma.user.findMany({
+                orderBy: {
+                    id: "desc"
+                }
+            });
+            return result;
         }
     },
 
@@ -42,8 +53,7 @@ export const user_resolvers = {
                         .email("Email is not valid")
                         .required("Email is required"),
                     userName: Yup.string().required("Username is required"),
-                    password: Yup.string().required("Password is required").min(5).max(8),
-                    role: Yup.string(),
+                    password: Yup.string().required("Password is required").min(5).max(16),
                 });
                 await validator.validate(data);
 
@@ -69,7 +79,7 @@ export const user_resolvers = {
                                 email,
                                 name: convertName,
                                 password: await hashPassword(password),
-                                role,
+                                role: role ? "Admin" : null,
                                 userName,
                                 created_by: CreatedBy,
                             },
@@ -83,7 +93,8 @@ export const user_resolvers = {
                 
                 // JWT token
                 const token =  JWT.sign({
-                    UserId: response.id,
+                    userid: response.id,
+                    user_name: response.name,
                     role: role
                 }, JWT_signature, {
                     expiresIn: 36000000
@@ -131,9 +142,10 @@ export const user_resolvers = {
                 // JWT token
                 const token =  JWT.sign({
                     UserId: checkEmail.id,
+                    name: checkEmail.name,
                     role: checkEmail.role
                 }, JWT_signature, {
-                    expiresIn: 36000000
+                    expiresIn: "1m"
                 });
                 
                 return {
